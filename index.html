@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="theme-color" content="#1877F2">
+  <title>IT WORLD JERSEY</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Desktop Warning (mobile-only lock) -->
+  <div class="desktop-warning">
+    <div class="warning-box">
+      <h2>📱 Mobile Only</h2>
+      <p>This app is designed for mobile devices.<br>Please visit from your phone or tablet.</p>
+    </div>
+  </div>
+
+  <!-- TOP BAR -->
+  <header class="topbar">
+    <button class="icon-btn" id="menuBtn">☰</button>
+    <div class="brand">IT WORLD <span>JERSEY</span></div>
+    <div class="search-bar" onclick="alert('Search coming soon!')">🔍 Search designs...</div>
+    <div class="top-actions">
+      <span class="live-badge">🔴 LIVE</span>
+      <button class="icon-btn" onclick="switchTab('create')">➕</button>
+    </div>
+  </header>
+
+  <main class="mobile-only">
+    <!-- 1. HOME VIEW -->
+    <section id="view-home" class="view active">
+      <div class="stories-container" id="stories"></div>
+      
+      <!-- SLIDESHOW POST -->
+      <div class="feed-post">
+        <div class="post-header">
+          <div class="avatar">IT</div>
+          <div class="post-info"><b>IT World Jersey</b><small>Just now · 🌍</small></div>
+        </div>
+        <p class="post-text">New 500+ designs are now available! 🔥 Tap Shop to browse or order directly via WhatsApp. 📱</p>
+        
+        <!-- Slideshow -->
+        <div class="slideshow">
+          <div class="slides" id="slides">
+            <div class="slide" style="background: linear-gradient(135deg, #1877F2, #0a4a9e);">👕 Design 0001</div>
+            <div class="slide" style="background: linear-gradient(135deg, #E41E3F, #8a0f22);">👕 Design 0002</div>
+            <div class="slide" style="background: linear-gradient(135deg, #25D366, #0f7a3a);">👕 Design 0003</div>
+            <div class="slide" style="background: linear-gradient(135deg, #F7B500, #b57e00);">👕 Design 0004</div>
+            <div class="slide" style="background: linear-gradient(135deg, #833AB4, #4a1a6b);">👕 Design 0005</div>
+          </div>
+          <button class="slide-btn prev" onclick="changeSlide(-1)">‹</button>
+          <button class="slide-btn next" onclick="changeSlide(1)">›</button>
+          <div class="slide-dots" id="slide-dots"></div>
+        </div>
+        
+        <div class="post-actions">
+          <button class="action-btn">👍 Like</button>
+          <button class="action-btn">💬 Comment</button>
+          <button class="action-btn">↗ Share</button>
+        </div>
+      </div>
+
+      <div class="section-header"><h3>🎬 Trending Reels</h3><span onclick="switchTab('reel')">See all</span></div>
+      <div class="reels-row" id="home-reels"></div>
+
+      <!-- TRENDING PRODUCTS -->
+      <div class="section-header"><h3>🔥 Trending Products</h3><span onclick="switchTab('shop')">See all</span></div>
+      <div class="trending-products" id="trending-products"></div>
+    </section>
+
+    <!-- 2. SHOP VIEW -->
+    <section id="view-shop" class="view">
+      <div class="shop-header">
+        <h2>🛍️ Shop Jerseys</h2>
+        <div class="category-chips" id="category-chips"></div>
+      </div>
+      <div class="product-grid" id="product-grid"></div>
+      <div class="loading-spinner" id="shop-loader">Loading more...</div>
+    </section>
+
+    <!-- 3. REEL VIEW -->
+    <section id="view-reel" class="view">
+      <div class="reels-feed" id="reels-feed"></div>
+    </section>
+
+    <!-- 4. CREATE VIEW -->
+    <section id="view-create" class="view">
+      <h2 class="page-title">✍️ Custom Design</h2>
+      <div class="create-options">
+        <div class="opt-card" onclick="orderCustom('Full Custom Design')">
+          <span class="opt-icon">🎨</span>
+          <div><b>Full Custom Design</b><small>Design your jersey from scratch</small></div>
+        </div>
+        <div class="opt-card" onclick="orderCustom('Upload Your Design')">
+          <span class="opt-icon">🖼️</span>
+          <div><b>Upload Your Design</b><small>Send us your artwork</small></div>
+        </div>
+        <div class="opt-card" onclick="orderCustom('Team Uniform Order')">
+          <span class="opt-icon">👥</span>
+          <div><b>Team Uniform</b><small>Bulk order for your club</small></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. PROFILE VIEW -->
+    <section id="view-profile" class="view">
+      <div id="guest-profile">
+        <div class="avatar large">👤</div>
+        <h2 class="text-center">Guest User</h2>
+        <p class="text-center muted">Browse 500+ designs and order via WhatsApp without an account!</p>
+        <button class="primary-btn" onclick="toggleLogin()">Login / Register</button>
+      </div>
+      <div id="logged-profile" class="hidden">
+        <div class="avatar large">ME</div>
+        <h2 class="text-center">My Account</h2>
+        <div class="stats-row">
+          <div><b>0</b><small>Orders</small></div>
+          <div><b>0</b><small>Wishlist</small></div>
+        </div>
+        <div class="menu-list">
+          <div class="menu-item">📍 Shipping Address</div>
+          <div class="menu-item">💳 Payment Methods</div>
+          <div class="menu-item">❓ Help & Support</div>
+        </div>
+        <button class="danger-btn" onclick="toggleLogin()">Logout</button>
+      </div>
+    </section>
+  </main>
+
+  <!-- BOTTOM NAVIGATION -->
+  <nav class="bottom-nav mobile-only">
+    <button class="nav-tab active" data-tab="home"><span>🏠</span>Home</button>
+    <button class="nav-tab" data-tab="shop"><span>🛍️</span>Shop</button>
+    <button class="nav-tab" data-tab="reel"><span>🎬</span>Reel</button>
+    <button class="nav-tab" data-tab="create"><span>➕</span>Create</button>
+    <button class="nav-tab" data-tab="profile"><span>👤</span>Profile</button>
+  </nav>
+
+  <script src="data.js"></script>
+  <script src="app.js"></script>
+</body>
+  </html>
